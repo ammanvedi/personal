@@ -15,3 +15,13 @@ export const CenterImage = styled.div`
   text-align: center;
   max-width: 100%;
 `
+
+export const PostList = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`
+
+export const PostListItem = styled.li`
+  margin: 0;
+`
