@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import {CenterImage} from '../../component/layout'
+
 # Thinking About Intersections and Unions in Type Theory
 
 I am a Javascript developer by trade and I am aware that typing is not a new idea, but its adoption in javascript is relatively new. This means a lot of people like myself are confronting some ideas from type theory for the first time in detail.
@@ -12,7 +15,16 @@ Wikipedia sums up a set pretty well;
 
 for example [A, B, C, D, E], visually this is easy to imagine;
 
-![https://cdn-images-1.medium.com/max/2000/1*aSnhX8lrbFxPBssYauWjjQ.png](https://cdn-images-1.medium.com/max/2000/1*aSnhX8lrbFxPBssYauWjjQ.png)
+<CenterImage>
+    <Image
+        src="/set/1.svg"
+        width={250}
+        height={250}
+        objectFit='contain'
+        className='img'
+        alt="A simple example of a set"
+    />
+</CenterImage>
 
 *A simple example of a set*
 
@@ -24,15 +36,31 @@ We have a collection of items with no item repeated, in this example i have used
 
 A union of two sets creates a new set that contains all items from both input sets;
 
-![https://cdn-images-1.medium.com/max/2000/1*omccW0C6-e1snp5ylHI_Jg.png](https://cdn-images-1.medium.com/max/2000/1*omccW0C6-e1snp5ylHI_Jg.png)
-
-*union of two sets*
+<CenterImage>
+    <Image
+        src="/set/2.svg"
+        width={500}
+        height={400}
+        objectFit='contain'
+        className='img'
+        alt="A simple example of a set"
+    />
+</CenterImage>
 
 ### Intersections on Sets
 
 An intersection between two sets creates a set that contains common elements of the input sets;
 
-![https://cdn-images-1.medium.com/max/2000/1*UeqmFN2gQdcSYw5-Jpbi0Q.png](https://cdn-images-1.medium.com/max/2000/1*UeqmFN2gQdcSYw5-Jpbi0Q.png)
+<CenterImage>
+<Image
+    src="/set/3.svg"
+    width={500}
+    height={400}
+    objectFit='contain'
+    className='img'
+    alt="A simple example of a set"
+/>
+</CenterImage>
 
 *intersection of two sets*
 
@@ -46,13 +74,24 @@ How do we model these types as sets so we can reason about what the resulting ty
 
 My first instinct was always to model them as sets at the definition level, for example;
 
-![https://cdn-images-1.medium.com/max/2000/1*5Dc6ODHlRyjqZsBwnKVIrA.png](https://cdn-images-1.medium.com/max/2000/1*5Dc6ODHlRyjqZsBwnKVIrA.png)
+<CenterImage>
+    <Image
+        src="/set/4.svg"
+        width={500}
+        height={200}
+        objectFit='contain'
+        className='img'
+        alt="two circles, the first is labelled 'Type X' and contains two values 'string prop' and 'number prop'. The second is labelled 'type y' and contains one item 'object prop'"
+    />
+</CenterImage>
 
 Each type forms a set, the members of which are the properties of the type.
 
 **This is a dangerous way to think about it**
 
-Why? Lets look at the definition of a intersection type from the Typescript docs; > # An intersection type combines multiple types into one. This allows you to add together existing types to get a single type that has all the features you need.
+Why? Lets look at the definition of a intersection type from the Typescript docs; 
+
+> An intersection type combines multiple types into one. This allows you to add together existing types to get a single type that has all the features you need.
 
 Well in our current mental model we would take all the items in the TypeX set and combine them with the TypeY set to create our intersection…
 
@@ -63,6 +102,17 @@ The fallacy here is applying the set modelling to the type definition, what we s
 ### Type Values as Sets
 
 lets remind ourselves of the types we defined earlier
+
+<CenterImage>
+    <Image
+        src="/set/4.svg"
+        width={500}
+        height={200}
+        objectFit='contain'
+        className='img'
+        alt="two circles, the first is labelled 'Type X' and contains two values 'string prop' and 'number prop'. The second is labelled 'type y' and contains one item 'object prop'"
+    />
+</CenterImage>
 
 Now to enumerate all the possible values of each of these types would probably require more time than any of us have today, but its not necessary, to see the relations we just need to be selective about what we enumerate. For example here are some possible values of TypeX and TypeY
 
@@ -82,7 +132,7 @@ The set will be made up of values that contain all props from TypeX and TypeY
 
 All these will be valid members;
 
-```javascript
+```ts
 { stringProp: 'C', numberProp: 2, objectProp: {} }
 { stringProp: 'C', numberProp: 3, objectProp: {} }
 { stringProp: 'D', numberProp: 3, objectProp: {}, randomProp: [] }

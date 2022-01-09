@@ -1,9 +1,10 @@
 import {DefaultTheme} from "styled-components";
-import {MQ} from "../../styled";
+import {Colors, MQ} from "../../styled";
 
 export const theme: DefaultTheme = {
     colors: {
-        text: '#212121'
+        text: '#212121',
+        link: '#2e86de'
     },
     mq: {
         t: '768px',
@@ -17,4 +18,8 @@ interface InterpolationProps {
 
 export const getMq = (mq: keyof MQ) => (props: InterpolationProps): string => {
     return props.theme.mq[mq]
+}
+
+export const getColor = (color: keyof Colors) => (props: InterpolationProps): string => {
+    return props.theme.colors[color]
 }

@@ -10,6 +10,7 @@ type MQ = {
 
 type Colors = {
     text: HexValue;
+    link: HexValue;
 };
 
 declare module 'styled-components' {

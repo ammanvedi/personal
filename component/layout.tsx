@@ -8,4 +8,10 @@ export const Layout = styled.article`
     max-width: 680px;
     margin: 3rem auto;
   }
+`;
+
+export const CenterImage = styled.div`
+  display: block;
+  text-align: center;
+  max-width: 100%;
 `

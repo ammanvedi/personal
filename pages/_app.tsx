@@ -1,4 +1,3 @@
-import '../styles/globals.css'
 import type {AppProps} from 'next/app';
 import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {MDXProvider} from '@mdx-js/react';
@@ -6,28 +5,7 @@ import * as Typog from '../component/typography';
 import {Layout} from "../component/layout";
 import {getMq, theme} from "../component/style/theme";
 import '../styles/code-theme.css';
-
-const GlobalStyle = createGlobalStyle`
-  html {
-    font-size: 100%;
-    
-    @media(min-width: ${getMq('t')}) {
-      font-size: 112.5%;
-    }
-
-    @media(min-width: ${getMq('d')}) {
-      font-size: 131.3%;
-    }
-  }
-  
-  body {
-    fontFamily: "'Helvetica Neue', 'Helvetica', sans-serif";
-  }
-  
-  .img {
-    border-radius: 8px;
-  }
-`
+import GlobalStyles from '../styles/globals'
 
 const components = {
     h1: Typog.H1,
@@ -41,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
       <MDXProvider components={components}>
         <ThemeProvider theme={theme}>
-            <GlobalStyle />
+            <GlobalStyles />
           <Component {...pageProps} />
         </ThemeProvider>
       </MDXProvider>
