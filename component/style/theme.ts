@@ -1,5 +1,4 @@
 import {DefaultTheme} from "styled-components";
-import {Colors, MQ} from "../../styled";
 
 export const theme: DefaultTheme = {
     colors: {
@@ -8,7 +7,8 @@ export const theme: DefaultTheme = {
     },
     mq: {
         t: '768px',
-        d: '1024px'
+        d: '1024px',
+        p: '500px'
     }
 }
 
@@ -16,10 +16,10 @@ interface InterpolationProps {
     theme: DefaultTheme
 }
 
-export const getMq = (mq: keyof MQ) => (props: InterpolationProps): string => {
+export const getMq = (mq: keyof DefaultTheme['mq']) => (props: InterpolationProps): string => {
     return props.theme.mq[mq]
 }
 
-export const getColor = (color: keyof Colors) => (props: InterpolationProps): string => {
+export const getColor = (color: keyof DefaultTheme['colors']) => (props: InterpolationProps): string => {
     return props.theme.colors[color]
 }

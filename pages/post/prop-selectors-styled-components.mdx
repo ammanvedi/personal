@@ -1,0 +1,73 @@
+export const meta = {
+    title: "Prop Selectors for Styled Components",
+    date: 1641767639000
+}
+
+# Prop Selectors for Styled Components
+
+I am a big fan of styled components, I have been using it for a while and like most people
+I write my components with the backtick syntax;
+
+```tsx
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+    background-color: red;
+`
+```
+
+This has some advantages over the 
+[object syntax](https://styled-components.com/docs/advanced#style-objects), its in general a much more
+flexible syntax hence why it is the default. However I always found pulling things out
+of props cumbersome
+
+```tsx
+const Wrapper = styled.div`
+    background-color: ${props => props.theme.colors.primary};
+    border: 1px solid ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.text}
+`
+```
+
+This syntax when used repeatedly is not very terse. We can improve this by using selectors.
+
+In typescript we will create a [declaration](https://styled-components.com/docs/api#create-a-declarations-file)
+for the theme.
+
+```ts
+export const theme: DefaultTheme = {
+    colors: {
+        text: '#212121',
+        link: '#2e86de'
+    },
+    mq: {
+        t: '768px',
+        d: '1024px'
+    }
+}
+```
+
+ We can then define a higher order function that will select a given color
+
+ ```ts
+interface InterpolationProps {
+    theme: DefaultTheme
+}
+
+
+export const getColor = (color: keyof DefaultTheme['colors']) => (props: InterpolationProps): string => {
+    return props.theme.colors[color]
+}
+ ```
+
+Now we can apply this to our earlier example
+
+```tsx
+const Wrapper = styled.div`
+    background-color: ${getColor('primary');
+    border: 1px solid ${getColor('secondary')};
+    color: ${getColor('text')}
+`
+```
+
+Less to type and easier to understand!

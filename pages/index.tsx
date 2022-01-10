@@ -18,8 +18,35 @@ type Props = {
 export default function Home({
     posts
 }: Props) {
+    const preText = `/**
+ * typeerror
+ * 
+ * I'm Amman a web developer from London, interested 
+ * in functional programming, design systems and 
+ * mechanical keyboards
+ * 
+ * <a href="https://twitter.com/AmmanV" target="_blank" rel="noopener noreferrer">twitter</a>, <a href="https://github.com/ammanvedi" target="_blank" rel="noopener noreferrer">github</a>, <a href="https://www.linkedin.com/in/ammanvedi/" target="_blank" rel="noopener noreferrer">linkedin</a>, <a href="https://www.npmjs.com/~ammanvedi" target="_blank" rel="noopener noreferrer">npm</a>
+ */
+    `;
+
+    const preTextMobile = `/**
+ * typeerror
+ * 
+ * I'm Amman a web developer from
+ * London, interested in functional
+ * programming, design systems and 
+ * mechanical keyboards
+ * 
+ * <a href="https://twitter.com/AmmanV" target="_blank" rel="noopener noreferrer">twitter</a>, <a href="https://github.com/ammanvedi" target="_blank" rel="noopener noreferrer">github</a>, <a href="https://www.linkedin.com/in/ammanvedi/" target="_blank" rel="noopener noreferrer">linkedin</a>, <a href="https://www.npmjs.com/~ammanvedi" target="_blank" rel="noopener noreferrer">npm</a>
+ */
+        `;
     return (
         <Layout.Layout>
+            <Layout.HomeHeaderDesktop dangerouslySetInnerHTML={{__html: preText}} />
+            <Layout.HomeHeaderMobile dangerouslySetInnerHTML={{__html: preTextMobile}} />
+            <Layout.HomeHeaderHeading>
+                {`/* thoughts */`}
+            </Layout.HomeHeaderHeading>
             <Layout.PostList>
                 {posts.map(p => (
                     <Layout.PostListItem key={p.title}>

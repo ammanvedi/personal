@@ -33,11 +33,6 @@ const reset = css`
         display: block;
     }
 
-    h1 {
-        font-size: 2em;
-        margin: 0.67em 0;
-    }
-
     /* Grouping content
     ========================================================================== */
 
@@ -54,7 +49,7 @@ const reset = css`
 
     pre {
         font-family: monospace, monospace; /* 1 */
-        font-size: 1em; /* 2 */
+        font-size: 0.7rem; /* 2 */
     }
 
     /* Text-level semantics

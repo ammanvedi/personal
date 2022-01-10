@@ -1,14 +1,25 @@
+import React from 'react';
 import styled from 'styled-components';
-import {getMq} from "./style/theme";
+import {getColor, getMq} from "./style/theme";
 
 export const Layout = styled.article`
-  margin: 3rem 1rem;
+  margin: 2rem 1rem;
   
   @media(min-width: ${getMq("t")}) {
     max-width: 680px;
-    margin: 3rem auto;
+    margin: 2rem auto;
   }
 `;
+
+export const PostLayout: React.FC<{}> = ({children}) => {
+  const headerText = `<a href="/">/* typeerror */</a>`
+  return (
+    <Layout>
+      <PostHeader dangerouslySetInnerHTML={{__html: headerText}} />
+      {children}
+    </Layout>
+  )
+}
 
 export const CenterImage = styled.div`
   display: block;
@@ -24,4 +35,45 @@ export const PostList = styled.ul`
 
 export const PostListItem = styled.li`
   margin: 0;
+`
+
+export const HomeHeader = styled.pre`
+  white-space: pre;
+  margin: 0;
+  margin-left: -10px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+`
+
+export const HomeHeaderHeading = styled(HomeHeader)`
+  margin-left: 0;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+`;
+
+export const PostHeader = styled(HomeHeaderHeading)`
+  margin-top: 0;
+
+  a {
+    color: ${getColor('text')};
+  }
+  
+`
+
+export const HomeHeaderDesktop = styled(HomeHeader)`
+  display: none;
+
+  @media(min-width: ${getMq('p')}) {
+    display: block;
+  }
+`
+
+export const HomeHeaderMobile = styled(HomeHeader)`
+    display: block;
+
+  @media(min-width: ${getMq('p')}) {
+    display: none;
+  }
 `

@@ -1,10 +1,9 @@
 import type {AppProps} from 'next/app';
-import {createGlobalStyle, ThemeProvider} from "styled-components";
+import {ThemeProvider} from "styled-components";
 import {MDXProvider} from '@mdx-js/react';
 import * as Typog from '../component/typography';
-import {Layout} from "../component/layout";
-import {getMq, theme} from "../component/style/theme";
-import '../styles/code-theme.css';
+import {Layout, PostLayout} from "../component/layout";
+import {theme} from "../component/style/theme";
 import GlobalStyles from '../styles/globals'
 
 const components = {
@@ -12,7 +11,7 @@ const components = {
     h2: Typog.H2,
     h3: Typog.H3,
     p: Typog.Body,
-    wrapper: Layout
+    wrapper: PostLayout
 }
 
 function MyApp({ Component, pageProps }: AppProps) {

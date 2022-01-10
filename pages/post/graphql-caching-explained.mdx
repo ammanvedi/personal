@@ -21,11 +21,11 @@ Currently the stable version of Apollo Client React sits at major version 2. Thi
 4. The move away from explicit fragment matchers to possibleTypes in Apollo Client React 3.0
 5. What changes need to be made for a migration from 2.0 to 3.0
 
-# Examples Repository
+## Examples Repository
 
 [The examples in this post can be run in a standalone playground that can be found here](https://github.com/ammanvedi/graphql-cache-playground) 
 
-# The Schema and Types
+## The Schema and Types
 
 Lets take a look at an example schema
 
@@ -126,11 +126,11 @@ type Mutation {
 }
 ```
 
-# The Cache
+## The Cache
 
-## Why do we Need the Cache?
+### Why do we Need the Cache?
 
-### Reducing Number Of Calls to Endpoints
+#### Reducing Number Of Calls to Endpoints
 
 By leveraging the cache in combination with a fetchPolicy we can prevent repeating queries that we have already made;
 
@@ -148,7 +148,7 @@ By leveraging the cache in combination with a fetchPolicy we can prevent repeati
 
 Components A and B both use a fetchPolicy of cache-first, we initially request the data for component A but we can pull it from the cache when requesting component B.
 
-### Keeping Client and Server State in Sync
+#### Keeping Client and Server State in Sync
 
 When we make a request containing a mutation, our data's state will change. We need to reflect this on the client side. If we return the data that has updated our cache can handle broadcasting this update to relevant components.
 
@@ -167,9 +167,9 @@ When we make a request containing a mutation, our data's state will change. We n
 
 We mutate X the updated X value is reflected in all components that use it, a behaviour that most web applications require. With a properly designed schema it comes for free.
 
-# How Does The Cache Work
+## How Does The Cache Work
 
-## Overall Structure
+### Overall Structure
 
 The Apollo Cache conforms to a pretty simple interface;
 
@@ -186,7 +186,7 @@ export interface NormalizedCache {
 
 This enables you to implement the cache in any way that you see fit as long as you conform to this interface. In the case of InMemoryCache for example the cache is just a simple object stored in memory. 
 
-## Cache Keys and Automatic Updates
+### Cache Keys and Automatic Updates
 
 In order to store data in the cache each object needs to have a key that can be calculated again in the future deterministically. The first level of caching happens at the query and mutation level
 
@@ -475,7 +475,7 @@ But we must make sure that the type that the mutation returns is the same as the
 
 Automatic cache updates are very useful when updating items that have been returned from other queries, however there are some situations where this will not happen automatically
 
-## Non Standard and Missing IDS
+### Non Standard and Missing IDS
 
 In order to do things automatically for you Apollo assumes two things when trying to generate a cache key for your data
 
@@ -603,17 +603,17 @@ This will key the Pokedex object under Pokedex and fall back to the default data
 
 As previously we have now de coupled the Pokedex data from the query that made it. You can also use dataIdFromObject if you have non standard id names as by default Apollo Client will only look for an `id` or `_id` property name.
 
-## Manual Cache Updates
+### Manual Cache Updates
 
 Often when updates happen to things that are not concrete types (i.e. objects with a `__typename`) or a new instance of a concrete type is created we have to intervene manually for our query to update
 
-### Updating Items in List Queries
+#### Updating Items in List Queries
 
 This is very well documented in the [official docs](https://www.apollographql.com/docs/react/v2.5/advanced/caching/#updating-after-a-mutation)
 
-## Fragment Matching and Strengthening Type Safety
+### Fragment Matching and Strengthening Type Safety
 
-### Type Safety and the Need for Validation
+#### Type Safety and the Need for Validation
 
 One of the biggest advantages to GraphQL is the schema. The schema provides a language-agnostic description of;
 
@@ -656,7 +656,7 @@ and receive
 
 Something has gone terribly wrong. The same logic applies when we manually write a query or fragment to the cache we can validate the data that we want to write against our query document.
 
-### Fragments and the Challenges They Pose to Validation
+#### Fragments and the Challenges They Pose to Validation
 
 Fragments simply re-usable sets of fields that allow us to avoid repeating ourselves.
 
@@ -702,7 +702,7 @@ export interface FragmentMatcherInterface {
 
 ***NOTE: this is a simplified view of the type signature the real signature is provided in the Additional Notes section at the end of this post***
 
-### Heuristic Fragment Matching
+#### Heuristic Fragment Matching
 
 > A heuristic technique, is any approach to problem solving, learning, or discovery that employs a practical method not guaranteed to be optimal or perfect, but sufficient for the immediate goals
 
@@ -802,7 +802,7 @@ So then lets try to match the structure of the returned object to the type we sp
 
 We should have never done the last check, from the schema we know that `Pokeball` and `Potion` are subtypes of `Item` and should not be matched on the same object.
 
-### Introspective Fragment Matching
+#### Introspective Fragment Matching
 
 With an `IntrospectionFragmentMatcher` we provide the schema as JSON and with this information we construct the following map which describes the relationship between interfaces and their implementing types, this is called the `possibleTypes` map
 
@@ -836,9 +836,9 @@ So lets run through that previous example again and see what the out come is
 
 Which results in relevant fragments being matched and irrelevant ones being ignored
 
-# Apollo Client 3.0
+## Apollo Client 3.0
 
-## Project Structure Updates
+### Project Structure Updates
 
 Apollo used to be made up of several very independent packages which had to be imported separately for example 
 
@@ -853,9 +853,9 @@ However now these are all imported from the `@apollo/client` package
 import { gql, useQuery, ApolloClient, InMemoryCache } from '@apollo/client'
 ```
 
-## Updates to the Cache
+### Updates to the Cache
 
-### The New possibleTypes Configuration
+#### The New possibleTypes Configuration
 
 The main change in the client configuration comes from the fact that the included fragment matchers have been removed in favour of passing a possible types map. This was something that was generated inside the client previously, based on the introspection schema. Now it needs to be generated outside. 
 
@@ -879,13 +879,13 @@ private parseIntrospectionResult(
 
 Apollo also provide a script that will fetch the schema in their docs [here](https://www.apollographql.com/docs/react/v3.0-beta/data/fragments/#generating-possibletypes-automatically)
 
-### Cache Eviction
+#### Cache Eviction
 
 `cache.evict(id, field?)`
 
 Remove a specific item from the cache based on its cache key
 
-### Garbage Collection
+#### Garbage Collection
 
 `cache.gc()`
 
@@ -899,7 +899,7 @@ Another new method that prevents an object being removed from the cache even if 
 
 Basically reverses the retain operation and makes the previously retained object eligible to be garbage collected again.
 
-# In Conclusion
+## In Conclusion
 
 The main take aways are 
 
@@ -908,7 +908,7 @@ The main take aways are
 - Leverage `dataIdFromObject` if your data has non standard ids or is user specific data that has no id at all.
 - Your data is a graph. The cache is a graph where data, queries and mutations are the nodes
 
-# Additional Resources
+## Additional Resources
 
 - [The Concepts of GraphQL - apollographql.com](https://www.apollographql.com/blog/the-concepts-of-graphql-bc68bd819be3)
 - [Why is there a separate input type? - stackoverflow.com](https://stackoverflow.com/questions/41743253/whats-the-point-of-input-type-in-graphql)

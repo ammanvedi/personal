@@ -4,6 +4,7 @@ type PxValue = `${number}px`;
 type HexValue = `#${string}`;
 
 type MQ = {
+    p: PxValue,
     t: PxValue,
     d: PxValue,
 }

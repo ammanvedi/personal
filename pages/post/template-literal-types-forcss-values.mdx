@@ -1,0 +1,34 @@
+export const meta  = {
+    title: 'Template Literal Types for CSS Values',
+    date: 1641837941000
+}
+
+# Template Literal Types for CSS Values
+
+I was enchanted at first when I saw the release of 
+[template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) in 
+Typescript. I have seen people [do some really wild things](https://github.com/ghoullier/awesome-template-literal-types) with them.
+
+But up until now I did not have a real use case for them in my day to day coding, the use case is 
+related to when you need to store some sort of unit-ed css value. 
+
+Some examples;
+
+```ts
+type PxValue = `${number}px`;
+type HexValue = `#${string}`;
+```
+
+Commonly when you have a design system and you are using css in js you will store these
+values in the source as constants somewhere. Now we can do it in a type safe way!
+
+```ts
+type Colors = Record<string, HexValue>
+
+const c: Colors = {
+    primary: '#212121',
+    secondary: 'fff' // Error !
+}
+```
+
+Another layer of protection for a mistake future-me will make, I guarantee it. 
