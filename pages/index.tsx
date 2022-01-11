@@ -21,7 +21,7 @@ export default function Home({
     const preText = `/**
  * typeerror
  * 
- * I'm Amman a web developer from London,
+ * I'm Amman, a web developer from London,
  * interested in functional programming,
  * design systems and mechanical keyboards
  * 
