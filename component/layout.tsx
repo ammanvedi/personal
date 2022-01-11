@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { EmailForm } from './email-form';
 import {getColor, getMq} from "./style/theme";
 
 export const Layout = styled.article`
@@ -11,12 +12,14 @@ export const Layout = styled.article`
   }
 `;
 
+export const HEADER_TEXT = `<a href="/">/* typeerror */</a>`
+
 export const PostLayout: React.FC<{}> = ({children}) => {
-  const headerText = `<a href="/">/* typeerror */</a>`
   return (
     <Layout>
-      <PostHeader dangerouslySetInnerHTML={{__html: headerText}} />
+      <PostHeader dangerouslySetInnerHTML={{__html: HEADER_TEXT}} />
       {children}
+      <EmailForm />
     </Layout>
   )
 }
@@ -64,8 +67,10 @@ export const PostHeader = styled(HomeHeaderHeading)`
 
 export const HomeHeaderDesktop = styled(HomeHeader)`
   display: none;
+  
 
-  @media(min-width: ${getMq('p')}) {
+  @media(min-width: ${getMq('m')}) {
+    font-size: 1rem;
     display: block;
   }
 `
@@ -73,7 +78,7 @@ export const HomeHeaderDesktop = styled(HomeHeader)`
 export const HomeHeaderMobile = styled(HomeHeader)`
     display: block;
 
-  @media(min-width: ${getMq('p')}) {
+  @media(min-width: ${getMq('m')}) {
     display: none;
   }
 `

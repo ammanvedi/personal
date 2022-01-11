@@ -7,11 +7,16 @@ type MQ = {
     p: PxValue,
     t: PxValue,
     d: PxValue,
+    m: PxValue,
 }
 
 type Colors = {
     text: HexValue;
+    textLight: HexValue;
     link: HexValue;
+    white: HexValue;
+    success: HexValue;
+    failure: HexValue;
 };
 
 declare module 'styled-components' {

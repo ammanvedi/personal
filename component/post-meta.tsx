@@ -11,7 +11,7 @@ type PostMetaProps = {
 
 const Title = styled(Typog.H5)`
     color: ${getColor('text')};
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin: 0;
 `
 

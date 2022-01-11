@@ -26,6 +26,7 @@ const reset = css`
 
     body {
         margin: 0;
+        background-color: ${getColor('white')}
     }
 
 

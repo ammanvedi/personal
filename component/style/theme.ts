@@ -3,9 +3,14 @@ import {DefaultTheme} from "styled-components";
 export const theme: DefaultTheme = {
     colors: {
         text: '#212121',
-        link: '#2e86de'
+        link: '#5352ed',
+        success: '#78e08f',
+        white: '#f1f2f6',
+        textLight: '#747d8c',
+        failure: '#eb4d4b'
     },
     mq: {
+        m: '415px',
         t: '768px',
         d: '1024px',
         p: '500px'

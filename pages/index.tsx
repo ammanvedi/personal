@@ -21,9 +21,9 @@ export default function Home({
     const preText = `/**
  * typeerror
  * 
- * I'm Amman a web developer from London, interested 
- * in functional programming, design systems and 
- * mechanical keyboards
+ * I'm Amman a web developer from London,
+ * interested in functional programming,
+ * design systems and mechanical keyboards
  * 
  * <a href="https://twitter.com/AmmanV" target="_blank" rel="noopener noreferrer">twitter</a>, <a href="https://github.com/ammanvedi" target="_blank" rel="noopener noreferrer">github</a>, <a href="https://www.linkedin.com/in/ammanvedi/" target="_blank" rel="noopener noreferrer">linkedin</a>, <a href="https://www.npmjs.com/~ammanvedi" target="_blank" rel="noopener noreferrer">npm</a>
  */
@@ -32,7 +32,7 @@ export default function Home({
     const preTextMobile = `/**
  * typeerror
  * 
- * I'm Amman a web developer from
+ * I'm Amman, a web developer from
  * London, interested in functional
  * programming, design systems and 
  * mechanical keyboards
