@@ -3,9 +3,10 @@ import {join} from 'path';
 import * as Layout from '../component/layout'
 import { readMDXMeta } from "../component/mdx";
 import { PostMeta } from "../component/post-meta";
+import Head from 'next/head';
 
 
-type PostMeta = {
+export type PostMeta = {
     title: string,
     date: number,
     linkPath: string,
@@ -42,6 +43,10 @@ export default function Home({
         `;
     return (
         <Layout.Layout>
+            <Head>
+                <title>Type Error</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <Layout.HomeHeaderDesktop dangerouslySetInnerHTML={{__html: preText}} />
             <Layout.HomeHeaderMobile dangerouslySetInnerHTML={{__html: preTextMobile}} />
             <Layout.HomeHeaderHeading>

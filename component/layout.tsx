@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { EmailForm } from './email-form';
 import {getColor, getMq} from "./style/theme";
+import Head from 'next/head'
+import { PostMeta } from '../pages';
 
 export const Layout = styled.article`
   margin: 2rem 1rem;
@@ -14,9 +16,16 @@ export const Layout = styled.article`
 
 export const HEADER_TEXT = `<a href="/">/* typeerror */</a>`
 
-export const PostLayout: React.FC<{}> = ({children}) => {
+export const PostLayout: React.FC<{
+  meta: PostMeta
+}> = ({children, ...props}) => {
+  console.log(props)
   return (
     <Layout>
+      <Head>
+        <title>{props.meta.title}</title>
+        <meta property="og:title" content={props.meta.title} />
+      </Head>
       <PostHeader dangerouslySetInnerHTML={{__html: HEADER_TEXT}} />
       {children}
       <EmailForm />
